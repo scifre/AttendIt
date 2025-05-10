@@ -1,4 +1,4 @@
-package com.scifre.attendit.courseCard
+package com.scifre.attendit.components.courseCard
 
 import androidx.lifecycle.ViewModel
 import com.scifre.attendit.databaseRepository.DatabaseRepository
@@ -10,10 +10,12 @@ class CourseCardViewModel @Inject constructor(
     private val db: DatabaseRepository
 ) : ViewModel(){
 
-    val courseName = "Computational Number Theory"
+    var courseName = "Computational Number Theory"
     val facultyName = "Dr. RamaKrishna Bandi"
 
-
+    fun changeName(new:String){
+        courseName = new
+    }
 
 
 

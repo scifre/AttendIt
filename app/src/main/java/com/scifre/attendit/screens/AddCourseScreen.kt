@@ -2,7 +2,6 @@ package com.scifre.attendit.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,13 +18,14 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.scifre.attendit.dayTextBox.Day
+import com.scifre.attendit.components.scheduleBox.ScheduleBox
 
 @Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,6 +33,8 @@ import com.scifre.attendit.dayTextBox.Day
 fun AddCourseScreen(
     //viewModel: AddCourseViewModel = hiltViewModel()
 ) {
+    var scheduleList = remember { (mutableListOf<List<String>>(listOf("Wednesday", "11:00", "12:00"), listOf("Saturday", "9:00", "12:00"))) }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -65,7 +67,9 @@ fun AddCourseScreen(
         content = {
             paddingValues ->
             Column(
-                modifier = Modifier.padding(paddingValues).padding(all = 16.dp),
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .padding(all = 16.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ){
                 TextField(
@@ -95,26 +99,19 @@ fun AddCourseScreen(
                 )
                 Spacer(Modifier.size(10.dp))
                 Text(
-                    text = "Time Table",
+                    text = "Course Schedule",
                     fontSize = 20.sp,
                 )
-                Spacer(modifier = Modifier.size(10.dp))
-                Row {
-                    val days = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
-                    Column(
-                        modifier = Modifier
-                            .weight(25f)
-                    ) {
-                        days.forEach { day ->
-                            Day(day)
-                        }
-                    }
-                    /*VerticalPager(
-                        modifier = Modifier
-                            .weight(75f),
 
-                    ) { }*/
-                }
+                ScheduleBox(
+                    modifier = Modifier,
+                    scheduleList
+                )
+
+                Text(
+                    text = "Add New Class",
+                    fontSize = 20.sp,
+                )
 
 
             }

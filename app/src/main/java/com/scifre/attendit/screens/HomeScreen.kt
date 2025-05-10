@@ -20,14 +20,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.scifre.attendit.courseCard.CourseCard
+import androidx.navigation.NavHostController
+import com.scifre.attendit.components.courseCard.CourseCard
+import com.scifre.attendit.navigation.navGraph
 
 @Preview(showBackground = true)
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun HomeScreen(
+    navController: NavHostController
     //viewModel: HomeScreenViewModel = hiltViewModel()
 ){
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -48,7 +52,7 @@ fun HomeScreen(
 
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = {},
+                onClick = { navController.navigate("addCourse") },
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary,
                 content = {

@@ -2,6 +2,7 @@ package com.scifre.attendit
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +17,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             navGraph()
+        }
+        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+            Log.e("wer", "Thread: $thread", throwable)
         }
     }
 }

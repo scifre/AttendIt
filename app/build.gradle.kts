@@ -11,6 +11,9 @@ plugins {
 
 
 }
+hilt{
+    enableAggregatingTask = true
+}
 
 android {
     namespace = "com.scifre.attendit"
