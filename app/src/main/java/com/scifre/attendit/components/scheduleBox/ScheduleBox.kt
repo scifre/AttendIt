@@ -32,7 +32,9 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun ScheduleBox(
     modifier: Modifier = Modifier,
-    scheduleList: List<List<String>> = remember { (mutableListOf<List<String>>(listOf("Saturday", "11:00", "12:00"))) }
+    scheduleList: List<List<String>> = remember { (mutableListOf<List<String>>(listOf("Saturday", "11:00", "12:00")))},
+    onDeletePressed: (Int) -> Unit = {}
+
 ){
     Card(
         shape = RoundedCornerShape(8.dp),
@@ -109,7 +111,7 @@ fun ScheduleBox(
                             modifier = Modifier.weight(0.7f)
                         )
                         IconButton(
-                            onClick = {},
+                            onClick = {onDeletePressed(index)},
                             modifier = Modifier.weight(0.2f).size(35.dp)
                         ){
                             Icon(
